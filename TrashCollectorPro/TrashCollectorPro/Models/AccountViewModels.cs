@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace TrashCollectorPro.Models
 {
@@ -64,6 +65,11 @@ namespace TrashCollectorPro.Models
 
     public class RegisterViewModel
     {
+        //[Required]
+        //[Display(Name = "User name")]
+        //public string UserName { get; set; }
+        ////Added username
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -79,6 +85,7 @@ namespace TrashCollectorPro.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        public byte ZipCode { get; set; }
     }
 
     public class ResetPasswordViewModel
