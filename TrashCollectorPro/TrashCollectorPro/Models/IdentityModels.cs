@@ -10,7 +10,7 @@ namespace TrashCollectorPro.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public byte ZipCode { get; set; }
+        public int ZipCode { get; set; }
         //1a.could add FirstName, LastName
         public string FirstName { get; set; }
         public string LastName { get; set; }

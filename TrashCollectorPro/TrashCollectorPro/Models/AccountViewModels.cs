@@ -71,13 +71,17 @@ namespace TrashCollectorPro.Models
         ////Added username
 
         //2a.Add FirstName, LastName [Required for each]
+        [Required]
+        public int ZipCode { get; set; }
 
         [Required]
         [Display(Name = "First Name")]
+        [StringLength(35)]
         public string FirstName { get; set; }
 
         [Required]
         [Display(Name = "Last Name")]
+        [StringLength(35)]
         public string LastName { get; set; }
 
         [Required]
@@ -95,7 +99,7 @@ namespace TrashCollectorPro.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-        public byte ZipCode { get; set; }
+
     }
 
     public class ResetPasswordViewModel

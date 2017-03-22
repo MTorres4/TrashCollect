@@ -151,7 +151,7 @@ namespace TrashCollectorPro.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ZipCode = model.ZipCode };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ZipCode = model.ZipCode, FirstName = model.FirstName, LastName = model.LastName };
                 //var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, ZipCode = model.ZipCode };
 
                 //4a.Add FirstName, LastName
@@ -167,8 +167,12 @@ namespace TrashCollectorPro.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    // await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    //from MSDN Security Article Above
                     return RedirectToAction("Index", "Home");
                 }
+
+                //ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
                 AddErrors(result);
             }
 

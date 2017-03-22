@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using TrashCollectorPro.Models;
 
 [assembly: OwinStartupAttribute(typeof(TrashCollectorPro.Startup))]
 namespace TrashCollectorPro
