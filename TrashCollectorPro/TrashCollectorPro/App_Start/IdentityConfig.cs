@@ -53,11 +53,19 @@ namespace TrashCollectorPro
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
+                //default below
+                //RequiredLength = 6,
+                //RequireNonLetterOrDigit = true,
+                //RequireDigit = true,
+                //RequireLowercase = true,
+                //RequireUppercase = true,
+
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
+                RequireNonLetterOrDigit = false,
                 RequireDigit = true,
-                RequireLowercase = true,
+                RequireLowercase = false,
                 RequireUppercase = true,
+
             };
 
             // Configure user lockout defaults

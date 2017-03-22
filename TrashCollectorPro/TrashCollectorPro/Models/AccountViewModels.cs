@@ -70,6 +70,16 @@ namespace TrashCollectorPro.Models
         //public string UserName { get; set; }
         ////Added username
 
+        //2a.Add FirstName, LastName [Required for each]
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

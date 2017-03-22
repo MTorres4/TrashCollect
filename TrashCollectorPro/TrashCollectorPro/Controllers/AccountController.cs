@@ -153,6 +153,9 @@ namespace TrashCollectorPro.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ZipCode = model.ZipCode };
                 //var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, ZipCode = model.ZipCode };
+
+                //4a.Add FirstName, LastName
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
