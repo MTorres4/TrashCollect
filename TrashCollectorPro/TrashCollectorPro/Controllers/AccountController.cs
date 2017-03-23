@@ -18,11 +18,11 @@ namespace TrashCollectorPro.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private ApplicationDbContext context;
+        private ApplicationDbContext _roleManager;
 
         public AccountController()
         {
-            context = new ApplicationDbContext();
+            _roleManager = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -142,7 +142,7 @@ namespace TrashCollectorPro.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+            ViewBag.Name = new SelectList(_roleManager.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
             //from Syedshanu ASP.NET Security and Creating User
             return View();
         }
@@ -176,10 +176,14 @@ namespace TrashCollectorPro.Controllers
 
                     await this.UserManager.AddToRoleAsync(user.Id, "User");
                     //from DotNetCurry
+
+                    //if()
+
                     return RedirectToAction("Index", "Home");
+                    //above was default
                 }
 
-                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+                ViewBag.Name = new SelectList(_roleManager.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
                 AddErrors(result);
             }
 

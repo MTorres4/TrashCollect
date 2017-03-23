@@ -40,17 +40,18 @@ namespace TrashCollectorPro
                 }
             }
 
-            if(!roleManager.RoleExists("User"))
-            {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "User";
-                roleManager.Create(role);
-            }
-
             if(!roleManager.RoleExists("Employee"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Employee";
+                roleManager.Create(role);
+            }
+
+            //if(!roleManager.RoleExists("User"))
+            else
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "User";
                 roleManager.Create(role);
             }
         }
