@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TrashCollectorPro.Models;
 
+
 namespace TrashCollectorPro.Controllers
 {
     [Authorize]
@@ -17,9 +18,11 @@ namespace TrashCollectorPro.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext context;
 
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -139,6 +142,8 @@ namespace TrashCollectorPro.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+            //from Syedshanu ASP.NET Security and Creating User
             return View();
         }
 
@@ -156,6 +161,8 @@ namespace TrashCollectorPro.Controllers
 
                 //4a.Add FirstName, LastName
 
+                //if(Email = )
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -167,12 +174,12 @@ namespace TrashCollectorPro.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    // await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
-                    //from MSDN Security Article Above
+                    await this.UserManager.AddToRoleAsync(user.Id, "User");
+                    //from DotNetCurry
                     return RedirectToAction("Index", "Home");
                 }
 
-                //ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
                 AddErrors(result);
             }
 

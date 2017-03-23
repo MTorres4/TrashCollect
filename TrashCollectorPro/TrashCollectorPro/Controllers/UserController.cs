@@ -10,8 +10,10 @@ namespace TrashCollectorPro.Controllers
     {
         // GET: User
         public ActionResult Index()
+        //public string Index()
         {
             return View();
+            //return "You are registered!";
         }
     }
 }

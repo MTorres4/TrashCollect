@@ -72,6 +72,7 @@ namespace TrashCollectorPro.Models
 
         //2a.Add FirstName, LastName [Required for each]
         [Required]
+        [Display(Name = "Zip Code")]
         public int ZipCode { get; set; }
 
         [Required]

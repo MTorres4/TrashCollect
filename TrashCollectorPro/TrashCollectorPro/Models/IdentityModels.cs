@@ -24,6 +24,16 @@ namespace TrashCollectorPro.Models
         }
     }
 
+    public class ApplicationRole : IdentityRole
+    {
+        public ApplicationRole() : base () { }
+        public ApplicationRole(string roleName) : base(roleName) { }
+    }
+    //1b. above added from #11 FoxLearn
+
+    //public async Task<ActionResult> Create(model)
+    //Rather than giving access to add and change roles in application, want it here
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -35,5 +45,8 @@ namespace TrashCollectorPro.Models
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<TrashCollectorPro.Models.RoleViewModel> RoleViewModels { get; set; }
+        //4b. Delete from FoxLearn
     }
 }
