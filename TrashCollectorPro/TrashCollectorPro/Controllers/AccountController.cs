@@ -18,11 +18,11 @@ namespace TrashCollectorPro.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private ApplicationDbContext _roleManager;
+        private ApplicationDbContext context;
 
         public AccountController()
         {
-            _roleManager = new ApplicationDbContext();
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -73,7 +73,24 @@ namespace TrashCollectorPro.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                //return View(model);
+                //above was default
+                var email = context.Roles.SingleOrDefault(u => u.Email == model.Email);
+
+                if(email == "User")
+                {
+                    return View("Welcome", "User");
+                }
+
+                if(email == "Employee")
+                {
+                    return View("Welcome", "Employee");
+                }
+
+                if(email == "Admin")
+                {
+                    return View("Index", "Role");
+                }
             }
 
             // This doesn't count login failures towards account lockout
@@ -82,6 +99,7 @@ namespace TrashCollectorPro.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    if(User.IsInRole("Admin"))
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -128,6 +146,7 @@ namespace TrashCollectorPro.Controllers
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(model.ReturnUrl);
+                    //ADD HERE!!
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.Failure:
@@ -142,7 +161,7 @@ namespace TrashCollectorPro.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(_roleManager.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
             //from Syedshanu ASP.NET Security and Creating User
             return View();
         }
@@ -161,8 +180,6 @@ namespace TrashCollectorPro.Controllers
 
                 //4a.Add FirstName, LastName
 
-                //if(Email = )
-
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -177,13 +194,14 @@ namespace TrashCollectorPro.Controllers
                     await this.UserManager.AddToRoleAsync(user.Id, "User");
                     //from DotNetCurry
 
-                    //if()
-
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
                     //above was default
+
+                    return RedirectToAction("Welcome", "User");
+                    //Added as user
                 }
 
-                ViewBag.Name = new SelectList(_roleManager.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
                 AddErrors(result);
             }
 

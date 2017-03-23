@@ -9,7 +9,7 @@ namespace TrashCollectorPro.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Index()
+        public ActionResult Welcome()
         //public string Index()
         {
             return View();
