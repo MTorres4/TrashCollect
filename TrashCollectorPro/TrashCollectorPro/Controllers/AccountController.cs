@@ -73,24 +73,8 @@ namespace TrashCollectorPro.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //return View(model);
+                return View(model);
                 //above was default
-                var email = context.Roles.SingleOrDefault(u => u.Email == model.Email);
-
-                if(email == "User")
-                {
-                    return View("Welcome", "User");
-                }
-
-                if(email == "Employee")
-                {
-                    return View("Welcome", "Employee");
-                }
-
-                if(email == "Admin")
-                {
-                    return View("Index", "Role");
-                }
             }
 
             // This doesn't count login failures towards account lockout
@@ -99,7 +83,7 @@ namespace TrashCollectorPro.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    if(User.IsInRole("Admin"))
+                    //Had the if statements here, but moved to HomeController
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -111,8 +95,6 @@ namespace TrashCollectorPro.Controllers
                     return View(model);
             }
         }
-
-        //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
@@ -146,7 +128,6 @@ namespace TrashCollectorPro.Controllers
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(model.ReturnUrl);
-                    //ADD HERE!!
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.Failure:
@@ -183,6 +164,7 @@ namespace TrashCollectorPro.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await this.UserManager.AddToRoleAsync(user.Id, "User");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -191,7 +173,6 @@ namespace TrashCollectorPro.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    await this.UserManager.AddToRoleAsync(user.Id, "User");
                     //from DotNetCurry
 
                     //return RedirectToAction("Index", "Home");
@@ -199,6 +180,7 @@ namespace TrashCollectorPro.Controllers
 
                     return RedirectToAction("Welcome", "User");
                     //Added as user
+
                 }
 
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
