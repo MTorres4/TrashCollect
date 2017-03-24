@@ -9,11 +9,11 @@ namespace TrashCollectorPro.Controllers
     public class UserController : Controller
     {
         // GET: User
-        //public ActionResult Welcome()
-        public string Welcome()
+        public ActionResult Welcome()
+        //public string Welcome()
         {
-            //return View();
-            return "You are registered!";
+            return View();
+            //return "Welcome!";
         }
     }
 }

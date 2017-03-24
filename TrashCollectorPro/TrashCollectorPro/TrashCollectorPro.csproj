@@ -287,11 +287,11 @@
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />
+    <Content Include="Views\User\Welcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Employee\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
