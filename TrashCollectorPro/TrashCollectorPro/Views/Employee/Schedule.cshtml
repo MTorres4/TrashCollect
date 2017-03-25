@@ -3,4 +3,35 @@
     ViewBag.Title = "Schedule";
 }
 
-<h2>Pick-ups for the week</h2>
+<h2>Pick-ups for today!</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 60%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+          var uluru = {lat: 43.034134, lng: -87.911953};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            title: 'Home Base',
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dFT5gor1bg311IQrGWR7hTse_Vjnhvw&callback=initMap">
+    </script>
+</body>
+</html>
