@@ -9,8 +9,16 @@ namespace TrashCollectorPro.Controllers
     public class EmployeeController : Controller
     {
         // GET: Employee
-        public ActionResult Index()
+        public ActionResult Welcome()
         {
+            return View();
+        }
+
+        public ActionResult Schedule()
+        //Need CRUD
+        {
+            ViewBag.Message = "Your current route";
+
             return View();
         }
     }

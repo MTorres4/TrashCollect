@@ -28,14 +28,38 @@ namespace TrashCollectorPro.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            //ViewBag.Message = "Your application description page.";
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Role");
+            }
+            if (User.IsInRole("Employee"))
+            {
+                return RedirectToAction("Schedule", "Employee");
+            }
+            if (User.IsInRole("User"))
+            {
+                return RedirectToAction("Schedule", "User");
+            }
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            //ViewBag.Message = "Your contact page.";
+            if (User.IsInRole("Admin"))
+            {
+                return View();
+            }
+            if (User.IsInRole("Employee"))
+            {
+                return View();
+            }
+            if (User.IsInRole("User"))
+            {
+                return View();
+            }
 
             return View();
         }

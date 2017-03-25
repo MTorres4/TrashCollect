@@ -288,10 +288,12 @@
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\User\Welcome.cshtml" />
+    <Content Include="Views\User\Schedule.cshtml" />
+    <Content Include="Views\Employee\Welcome.cshtml" />
+    <Content Include="Views\Employee\Schedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
