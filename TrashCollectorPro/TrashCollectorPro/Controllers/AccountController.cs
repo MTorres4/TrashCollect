@@ -156,7 +156,7 @@ namespace TrashCollectorPro.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ZipCode = model.ZipCode, FirstName = model.FirstName, LastName = model.LastName };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ZipCode = model.ZipCode, City = model.City, State = model.State, Street = model.Street, FirstName = model.FirstName, LastName = model.LastName };
                 //var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, ZipCode = model.ZipCode };
 
                 //4a.Add FirstName, LastName

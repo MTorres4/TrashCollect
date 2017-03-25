@@ -11,6 +11,9 @@ namespace TrashCollectorPro.Models
     public class ApplicationUser : IdentityUser
     {
         public int ZipCode { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Street { get; set; }
         //1a.could add FirstName, LastName
         public string FirstName { get; set; }
         public string LastName { get; set; }

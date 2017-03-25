@@ -71,9 +71,6 @@ namespace TrashCollectorPro.Models
         ////Added username
 
         //2a.Add FirstName, LastName [Required for each]
-        [Required]
-        [Display(Name = "Zip Code")]
-        public int ZipCode { get; set; }
 
         [Required]
         [Display(Name = "First Name")]
@@ -89,6 +86,20 @@ namespace TrashCollectorPro.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Display(Name = "Address")]
+        public string Street { get; set; }
+
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Required]
+        [Display(Name = "Zip Code")]
+        public int ZipCode { get; set; }
+
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
