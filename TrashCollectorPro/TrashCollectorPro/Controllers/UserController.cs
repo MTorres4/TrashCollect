@@ -43,7 +43,29 @@ namespace TrashCollectorPro.Controllers
             //Need CRUD
         {
             ViewBag.Message = "Change your current pick-up";
+            //var userId = User.Identity.GetUserId();
+            //var currentPickUpDay = db.Users.Where();
 
+            return View();
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult Details()
+        {
+            return View();
+        }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        public ActionResult Delete()
+        {
             return View();
         }
     }

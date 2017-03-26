@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Schedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Pick-ups for today!</h2>
@@ -18,16 +19,17 @@
     <div id="map"></div>
     <script>
       function initMap() {
-          var uluru = {lat: 43.034134, lng: -87.911953};
+          var base = {lat: 43.034134, lng: -87.911953};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
-          center: uluru
+          center: base
         });
         var marker = new google.maps.Marker({
-            position: uluru,
+            position: base,
             title: 'Home Base',
           map: map
         });
+        marker.setMap(map);
       }
     </script>
     <script async defer
