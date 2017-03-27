@@ -27,14 +27,20 @@ namespace TrashCollectorPro.Controllers
             //var employeeRoleId = db.Roles.Where(x => x.Name == "Employee").First().Id;
             //var employees = db.Users.Where(x => x.Roles.First().RoleId == employeeRoleId).ToList();
 
-            //if (employees.Select(x => x.ZipCode).Contains(currentUserZip))
-            //{
-            //    return ViewBag("You are in our system!");
-            //}
-            //else
-            //{
-            //    return View("Unfortunately, we don't service your area yet, but we will email you as soon as we can service your area!");
-            //}
+            var employeeRoleId = db.Roles.Where(x => x.Name == "Employee").First().Id;
+            var employees = db.Users.Where(x => x.Roles.FirstOrDefault().RoleId == employeeRoleId).ToList();
+            var userId = User.Identity.GetUserId();
+            var currentUserZip = db.Users.Where(x => x.Id == userId).First().ZipCode;
+
+
+            if (employees.Select(x => x.ZipCode).Contains(currentUserZip))
+            {
+                ViewBag.Message = "We look forward to working with you!";
+            }
+            else
+            {
+                ViewBag.Message = "Unfortunately, we don't service your area yet, but we will email you as soon as we can service your area!";
+            }
             return View();
             //return "Welcome!";
         }

@@ -216,14 +216,6 @@
     <Compile Include="Migrations\201703231929571_role.Designer.cs">
       <DependentUpon>201703231929571_role.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703250412215_ZipCode1.cs" />
-    <Compile Include="Migrations\201703250412215_ZipCode1.Designer.cs">
-      <DependentUpon>201703250412215_ZipCode1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703262036285_ZipCode2.cs" />
-    <Compile Include="Migrations\201703262036285_ZipCode2.Designer.cs">
-      <DependentUpon>201703262036285_ZipCode2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Day.cs" />
@@ -322,12 +314,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703231929571_role.resx">
       <DependentUpon>201703231929571_role.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703250412215_ZipCode1.resx">
-      <DependentUpon>201703250412215_ZipCode1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703262036285_ZipCode2.resx">
-      <DependentUpon>201703262036285_ZipCode2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
