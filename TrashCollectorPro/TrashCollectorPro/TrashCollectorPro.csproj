@@ -293,6 +293,7 @@
     <Content Include="Views\User\Schedule.cshtml" />
     <Content Include="Views\Employee\Welcome.cshtml" />
     <Content Include="Views\Employee\Schedule.cshtml" />
+    <Content Include="Views\Employee\NoRoute.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -10,21 +11,35 @@ namespace TrashCollectorPro.Controllers
 {
     public class EmployeeController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db;
+        
+        public EmployeeController()
+        {
+            db = new ApplicationDbContext();
+        }
 
         // GET: Employee
         public ActionResult Welcome()
         {
-            //var address = db.Users.Include(a => a).Include
             return View();
         }
 
         public ActionResult Schedule()
         //Need CRUD
         {
-            ViewBag.Message = "Your current route";
+            var userRoleId = db.Roles.Where(x => x.Name == "User").First().Id;
+            var users = db.Users.Where(x => x.Roles.FirstOrDefault().RoleId == userRoleId).ToList();
+            var employeeId = User.Identity.GetUserId();
+            var currentEmployeeZip = db.Users.Where(x => x.Id == employeeId).First().ZipCode;
 
-            return View();
+            if(users.Select(x => x.ZipCode).Contains(currentEmployeeZip))
+            {
+                return View();
+            }
+            else
+            {
+                return View("NoRoute");
+            }
         }
     }
 }
