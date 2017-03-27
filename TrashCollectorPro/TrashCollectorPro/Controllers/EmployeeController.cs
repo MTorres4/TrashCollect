@@ -65,7 +65,7 @@ namespace TrashCollectorPro.Controllers
             DetermineIfRouteExists();
             if(counter > 0)
             {
-                return View();
+                return View("Schedule", routeAddresses);
             }
             else
             {

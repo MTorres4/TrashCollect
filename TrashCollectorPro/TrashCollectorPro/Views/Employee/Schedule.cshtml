@@ -18,19 +18,62 @@
 <body>
     <div id="map"></div>
     <script>
-      function initMap() {
-          var base = {lat: 43.034134, lng: -87.911953};
+        //function initMap() {
+        //    var base = { lat: 43.034134, lng: -87.911953 };
+        //    var map = new google.maps.Map(document.getElementById('map'), {
+        //        zoom: 12,
+        //        center: base
+        //    });
+        //    var marker = new google.maps.Marker({
+        //        position: base,
+        //        title: 'Home Base',
+        //        map: map
+        //    });
+        //    marker.setMap(map);
+        //}
+        ////function startFrom() {
+        ////    var employeeStart = {};
+        ////    var marker = new google.maps.Marker({
+        ////        position: employeeStart,
+        ////        title: 'Start',
+        ////        map: map
+        ////    });
+        ////    marker.setMap(map);
+        ////}
+
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: base
+            zoom: 14,
+            center: { lat: 43.034134, lng: -87.911953 }
         });
-        var marker = new google.maps.Marker({
-            position: base,
-            title: 'Home Base',
-          map: map
-        });
-        marker.setMap(map);
-      }
+
+        function initMap() {
+            var base = { lat: 43.034134, lng: -87.911953 };
+            dropMarker();
+        }
+
+        function dropMarker() {
+            var marker = new google.maps.Marker(map);
+        }
+
+        function convertToLatLng() {
+
+        }
+
+        function startFrom() {
+            //get employee address lambda
+            convertToLatLng();
+            dropMarker();
+        }
+
+        function fullRoute() {
+            for(i = 0; i < routeAddresses.Count; i++)
+            {
+                dropMarker()
+            }
+        }
+
+
+
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dFT5gor1bg311IQrGWR7hTse_Vjnhvw&callback=initMap">
