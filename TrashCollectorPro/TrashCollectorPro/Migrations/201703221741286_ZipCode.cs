@@ -13,6 +13,7 @@ namespace TrashCollectorPro.Migrations
             AddColumn("dbo.AspNetUsers", "City", c => c.String());
             AddColumn("dbo.AspNetUsers", "State", c => c.String());
             AddColumn("dbo.AspNetUsers", "Street", c => c.String());
+            AddColumn("dbo.AspNetUsers", "CurrentPickUpDay", c => c.String());
         }
         
         public override void Down()
@@ -23,6 +24,7 @@ namespace TrashCollectorPro.Migrations
             DropColumn("dbo.AspNetUsers", "City");
             DropColumn("dbo.AspNetUsers", "State");
             DropColumn("dbo.AspNetUsers", "Street");
+            DropColumn("dbo.AspNetUsers", "CurrentPickUpDay");
         }
     }
 }

@@ -25,7 +25,7 @@ namespace TrashCollectorPro.Controllers
             //var userId = User.Identity.GetUserId();
             //var currentUserZip = db.Users.Where(x => x.Id == userId).First().ZipCode;
             //var employeeRoleId = db.Roles.Where(x => x.Name == "Employee").First().Id;
-            //var employees = db.Users.Where(x => x.Roles.ToList()[0].RoleId == employeeRoleId).ToList();
+            //var employees = db.Users.Where(x => x.Roles.First().RoleId == employeeRoleId).ToList();
 
             //if (employees.Select(x => x.ZipCode).Contains(currentUserZip))
             //{
