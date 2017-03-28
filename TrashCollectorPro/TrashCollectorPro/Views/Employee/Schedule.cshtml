@@ -41,7 +41,7 @@
         ////    marker.setMap(map);
         ////}
 
-        //var employeeAddress = [1];
+        //var connectTheDots = [0];
         //var map = new google.maps.Map(document.getElementById('map'), {
         //    zoom: 14,
         //    center: { lat: 43.034134, lng: -87.911953 }
@@ -58,6 +58,7 @@
                 title: 'Home Base: End your route here',
                 map: map
             })
+            //connectTheDots.push(base);
             marker.setMap(map);
             fullRoute();
             connectRoute();
@@ -74,18 +75,17 @@
                 position: latlng, 
                 map: map
             });
-            //map: map
-            //marker.position(latlng)
             marker.setMap(map);
         }
 
-        function connectRoute() {
-            var flightPath = new google.maps.Polygon({
-                strokeColor: "#009900",
-                strokeOpacity: 1.0,
-                strokeWeight: 2
-                });
-        }
+        //function connectRoute() {
+        //    var pickupPath = new google.maps.Polyline({
+        //        strokeColor: "#009900",
+        //        strokeOpacity: 1.0,
+        //        strokeWeight: 2
+        //    });
+        //    pickupPath.setMap(map);
+        //}
 
         function convertToLatLng() {
             var geocoder = new google.maps.Geocoder();
@@ -105,6 +105,8 @@
 
                         //var latlng = {'results' : results[0].geometry.location.lat().concat.geometry.location.lng()}
                         dropMarker(latlng);
+                        //connectTheDots.push(latlng);
+                        //connectRoute(latlng);
                     }
                 })
             }
