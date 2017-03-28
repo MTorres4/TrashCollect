@@ -30,13 +30,22 @@ namespace TrashCollectorPro.Controllers
         }
 
         public void DetermineIfRouteExists()
-        //Need CRUD
         {
+            Addresses addresses = new Addresses();
             var userRoleId = db.Roles.Where(x => x.Name == "User").First().Id;
             var users = db.Users.Where(x => x.Roles.FirstOrDefault().RoleId == userRoleId).ToList();
             var employeeId = User.Identity.GetUserId();
             var currentEmployeeZip = db.Users.Where(x => x.Id == employeeId).First().ZipCode;
             var currentEmployeeDay = db.Users.Where(x => x.Id == employeeId).First().CurrentPickUpDay;
+            var currentEmployeeStreet = db.Users.Where(x => x.Id == employeeId).First().Street;
+            var currentEmployeeCity = db.Users.Where(x => x.Id == employeeId).First().City;
+            var currentEmployeeState = db.Users.Where(x => x.Id == employeeId).First().State;
+
+            addresses.Street = currentEmployeeStreet;
+            addresses.City = currentEmployeeCity;
+            addresses.State = currentEmployeeState;
+            addresses.ZipCode = currentEmployeeZip;
+            routeAddresses.Add(addresses);
 
             //if(users.Select(x => x.ZipCode).Contains(currentEmployeeZip) && (users.Select(x => x.CurrentPickUpDay).Contains(currentEmployeeDay)))
             for (int i = 0; i < users.Count; i++)

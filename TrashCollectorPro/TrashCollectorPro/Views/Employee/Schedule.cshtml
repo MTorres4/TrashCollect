@@ -1,4 +1,5 @@
-﻿
+﻿@*@model TrashCollectorPro.Models.Addresses*@
+@model IEnumerable<TrashCollectorPro.Models.Addresses>
 @{
     ViewBag.Title = "Schedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -41,38 +42,83 @@
         ////    marker.setMap(map);
         ////}
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
-            center: { lat: 43.034134, lng: -87.911953 }
-        });
+        //var employeeAddress = [1];
+        //var map = new google.maps.Map(document.getElementById('map'), {
+        //    zoom: 14,
+        //    center: { lat: 43.034134, lng: -87.911953 }
+        //});
 
         function initMap() {
             var base = { lat: 43.034134, lng: -87.911953 };
-            dropMarker();
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: base
+            });
+            var marker = new google.maps.Marker({
+                position: base,
+                title: 'Home Base: End your route here',
+                map: map
+            })
+            marker.setMap(map);
+            //startFrom();
+            fullRoute();
+            connectRoute();
+        }
+
+        //function startFrom() {
+        //    var employeeId = User.Id.GetUserId;
+        //    getEmployeeAddress(employeeId);
+        //    convertToLatLng();
+        //    dropMarker();
+        //}
+
+        @*function getEmployeeAddress(employeeId) {
+            @*Addresses employeeAddress = new Addresses();*@
+            //var employeeStart = string;
+            //var street = db.Users.Where(x => x.Id == employeeId).First().Street;
+            //var city = db.Users.Where(x => x.Id == employeeId).First().City;
+            //var state = db.Users.Where(x => x.Id == employeeId).First().State;
+            //var zipcode = db.Users.Where(x => x.Id == employeeId).First().ZipCode;
+            ////var employeeStart = street;
+            ////employeeStart.Add(street);
+            ////employeeStart.Add(city);
+            ////employeeStart.Add(state);
+            ////employeeStart.Add(zipcode);
+            //employeeStart = street + city + state + address;
+            //employeeStart.Add(employeeAddress);
+        }*@
+
+        function fullRoute() {
+            for (i = 0; i < routeAddresses.Count; i++) {
+                convertToLatLng();
+                dropMarker();
+            }
         }
 
         function dropMarker() {
             var marker = new google.maps.Marker(map);
+            //marker.setMap(initMap);
+        }
+
+        function connectRoute() {
+            var flightPath = new google.maps.Polygon({
+                strokeColor: "#009900",
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+                });
         }
 
         function convertToLatLng() {
-
+            var geocoder = new google.maps.Geocoder();
+            var address = routeAddresses.getElementById("address").value;
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if(status == google.maps.GeocoderStatus.OK)
+                {
+                    results[0].geometry.location.lat()
+                    results[0].geometry.location.lng()
+                }
+            })
         }
-
-        function startFrom() {
-            //get employee address lambda
-            convertToLatLng();
-            dropMarker();
-        }
-
-        function fullRoute() {
-            for(i = 0; i < routeAddresses.Count; i++)
-            {
-                dropMarker()
-            }
-        }
-
-
 
     </script>
     <script async defer
