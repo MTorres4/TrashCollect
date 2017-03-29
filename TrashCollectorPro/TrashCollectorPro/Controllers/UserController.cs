@@ -72,6 +72,11 @@ namespace TrashCollectorPro.Controllers
             return View("Schedule", userview);
         }
 
+        public ActionResult Invoice()
+        {
+            return View();
+        }
+
         public ActionResult Create()
         {
             return View();
