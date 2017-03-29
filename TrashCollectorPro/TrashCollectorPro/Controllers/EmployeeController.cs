@@ -40,6 +40,7 @@ namespace TrashCollectorPro.Controllers
             var currentEmployeeStreet = db.Users.Where(x => x.Id == employeeId).First().Street;
             var currentEmployeeCity = db.Users.Where(x => x.Id == employeeId).First().City;
             var currentEmployeeState = db.Users.Where(x => x.Id == employeeId).First().State;
+            var currentEmployeeActive = db.Users.Where(x => x.Id == employeeId).First().CurrentlyActive;
 
             addresses.Street = currentEmployeeStreet;
             addresses.City = currentEmployeeCity;
@@ -51,7 +52,7 @@ namespace TrashCollectorPro.Controllers
             for (int i = 0; i < users.Count; i++)
             {
                 //if (users.Select(x => x.ZipCode).Contains(currentEmployeeZip) && (users.Select(x => x.CurrentPickUpDay).Contains(currentEmployeeDay)))
-                if (users[i].ZipCode == currentEmployeeZip && users[i].CurrentPickUpDay == currentEmployeeDay)
+                if (users[i].ZipCode == currentEmployeeZip && users[i].CurrentPickUpDay == currentEmployeeDay && users[i].CurrentlyActive == currentEmployeeActive)
                 {
                     Route(users[i].Id);
                     counter++;

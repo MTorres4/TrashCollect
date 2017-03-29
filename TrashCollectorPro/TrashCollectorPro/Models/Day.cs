@@ -9,9 +9,13 @@ namespace TrashCollectorPro.Models
     {
         public int Id { get; set; }
         public string CurrentPickUpDay { get; set; }
-        public DateTime? ChangePickUpDay { get; set; }
-        public DateTime? SuspendService { get; set; }
-        public DateTime? ResumeService { get; set; }
+        //public DateTime? ChangePickUpDay { get; set; }
+        //public DateTime? SuspendService { get; set; }
+        //public DateTime? ResumeService { get; set; }
+        public string ChanegPickUpDay { get; set; }
+        public string SuspendService { get; set; }
+        public string ResumeService { get; set; }
+        public bool CurrentlyActive { get; set; }
 
         public enum Days
         {

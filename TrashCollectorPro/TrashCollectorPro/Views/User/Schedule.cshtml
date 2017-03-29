@@ -1,14 +1,69 @@
-﻿
+﻿@model TrashCollectorPro.Models.UserViewModels
 @{
     ViewBag.Title = "Schedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Current pick-up schedule</h2>
+<h2>Current status and schedule</h2>
 
-@*<div class="form-group">
-    @Html.LabelFor(m => m.Day, new { @class = "col-md-2 control-label" })
+@using (Html.BeginForm("Change", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+<div class="form-group">
+    @Html.LabelFor(m => m.CurrentPickUpDay, new { @class = "col-md-2 control-label" })
     <div class="col-md-10">
-        @Html.EnumDropDownListFor(m => m.Day., new { @class = "form-control" })
+        <input type="checkbox" name="CurrentPickUpDay" value="Monday" />Monday<br />
+        <input type="checkbox" name="CurrentPickUpDay" value="Tuesday" />Tuesday<br />
+        <input type="checkbox" name="CurrentPickUpDay" value="Wednesday" />Wednesday<br />
+        <input type="checkbox" name="CurrentPickUpDay" value="Thursday" />Thursday<br />
+        <input type="checkbox" name="CurrentPickUpDay" value="Friday" />Friday<br />
+        <input type="checkbox" name="CurrentPickUpDay" value="Saturday" />Saturday<br />
+
     </div>
+</div>
+<br>
+<div class="form-group">
+    @Html.LabelFor(m => m.CurrentlyActive, new { @class = "col-md-2 control-label" })
+<div class="col-md-10">
+<input type="radio" name="Inactive" value="Inactive" />Inactive<br />
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.SuspendService, new { @class = "col-md-2 control-label" })
+    <div class="col-md-6">
+        @Html.TextBoxFor(m => m.SuspendService, new { @class = "form-control" })
+        <p>Please enter MM/DD/YY</p>
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.ResumeService, new { @class = "col-md-2 control-label" })
+    <div class="col-md-6">
+        @Html.TextBoxFor(m => m.ResumeService, new { @class = "form-control" })
+        <p>Please enter MM/DD/YY</p>
+    </div>
+</div>
+@*<div class="form-group">
+    <a href="#" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-shopping-cart"></span>
 </div>*@
+
+
+@*<a href="#" class="btn btn-info btn-lg">
+    <span class="glyphicon glyphicon-shopping-cart"></span>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2" col-md-5>
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <input type="url" class="btn btn-default " value="Invoice" />
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Schedule" />
+        </div>
+    </div>
+
+    }

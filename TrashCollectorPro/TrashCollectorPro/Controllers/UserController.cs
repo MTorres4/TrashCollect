@@ -17,6 +17,8 @@ namespace TrashCollectorPro.Controllers
             db = new ApplicationDbContext();
         }
 
+
+
         // GET: User
         public ActionResult Welcome()
         //public ActionResult Welcome()
@@ -36,23 +38,38 @@ namespace TrashCollectorPro.Controllers
             if (employees.Select(x => x.ZipCode).Contains(currentUserZip))
             {
                 ViewBag.Message = "We look forward to working with you!";
+                //TempData["message"] = "We look forward to working with you!";
             }
             else
             {
+                //Can I force thier active status to false?
                 ViewBag.Message = "Unfortunately, we don't service your area yet, but we will email you as soon as we can service your area!";
+                //TempData["message"] = "Unfortunately, we do not service your zipcode area yet, but we will email you as soon as we get a TrashDash collector your way!";
             }
             return View();
             //return "Welcome!";
         }
 
         public ActionResult Schedule()
+        {
+            return View();
+        }
+        
+        public ActionResult Change(UserViewModels userview)
             //Need CRUD
         {
-            ViewBag.Message = "Change your current pick-up";
-            //var userId = User.Identity.GetUserId();
-            //var currentPickUpDay = db.Users.Where();
+            ViewBag.Message = "View your current pick-up status";
+            var userId = User.Identity.GetUserId();
+            //var currentPickUpDay = db.Users.Where(x => x.Id == userId).First().CurrentPickUpDay;
+            var user = db.Users.Single(m => m.Id == userId);
+            user.CurrentPickUpDay = userview.CurrentPickUpDay;
+            user.CurrentlyActive = userview.CurrentlyActive;
+            user.SuspendService = userview.SuspendService;
+            user.ResumeService = userview.ResumeService;
 
-            return View();
+            db.SaveChanges();
+
+            return View("Schedule", userview);
         }
 
         public ActionResult Create()

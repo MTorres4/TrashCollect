@@ -18,6 +18,9 @@ namespace TrashCollectorPro.Models
         //1a.could add FirstName, LastName
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public bool CurrentlyActive { get; set; }
+        public string SuspendService { get; set; }
+        public string ResumeService { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
